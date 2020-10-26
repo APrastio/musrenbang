@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Oct 25, 2020 at 04:57 PM
+-- Generation Time: Oct 26, 2020 at 01:28 PM
 -- Server version: 10.4.11-MariaDB
 -- PHP Version: 7.4.5
 
@@ -45,12 +45,12 @@ CREATE TABLE `musrenbang` (
 --
 
 INSERT INTO `musrenbang` (`musrenbang_id`, `kegiatan`, `sasaran`, `volume`, `lokasi`, `biaya`, `date`, `diakomodir`, `alasan`, `user_id`) VALUES
-(1, '1000', '1000', 1000, '1000', 1000, 1603637998, 'Menunggu Konfirmasi', '', 2),
+(1, 'jalan  baru', 'jl.simatupang', 1000, '1000', 1000, 1603637998, 'Menunggu Konfirmasi', '', 2),
 (2, '1603637998', '1603637998', 1603637998, '1603637998', 1603637998, 1603637998, 'Diakomodir', 'Diakomodir', 2),
 (3, '1000', '1000', 1000, '1000', 1000, 1603637998, 'Tidak Diakomodir', 'Tidak Diakomodir', 2),
 (4, '1000', '1603637998', 1603637998, '1603637998', 1603637998, 1603638398, 'Menunggu Konfirmasi', '', 2),
-(5, '1000', '100', 100, '100', 100, 1603639917, 'Menunggu Konfirmasi', '', 1),
-(6, '1000', '100011111', 1000, '1000', 1000, 1603640895, 'Menunggu Konfirmasi', '', 2);
+(6, '1000', '100011111', 1000, '1000', 1000, 1603640895, 'Diakomodir', '', 2),
+(10, 'penghancuran kota', 'semua kota yang ada k-popnya', 1000, 'jakarta', 2147483647, 1603713806, 'Menunggu Konfirmasi', '', 2);
 
 -- --------------------------------------------------------
 
@@ -121,13 +121,13 @@ ALTER TABLE `user`
 -- AUTO_INCREMENT for table `musrenbang`
 --
 ALTER TABLE `musrenbang`
-  MODIFY `musrenbang_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `musrenbang_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT for table `user`
 --
 ALTER TABLE `user`
-  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
 
 --
 -- Constraints for dumped tables

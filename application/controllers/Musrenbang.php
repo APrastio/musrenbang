@@ -46,4 +46,32 @@ class Musrenbang extends CI_Controller
             redirect('kecamatan/musrenbang');
         }
     }
+
+    public function ubahMusrenbang()
+    {
+
+        $data = [
+            'musrenbang_id' => htmlspecialchars($this->input->post('id', true)),
+            'kegiatan' => htmlspecialchars($this->input->post('kegiatan', true)),
+            'sasaran' => htmlspecialchars($this->input->post('sasaran', true)),
+            'volume' => htmlspecialchars($this->input->post('volume', true)),
+            'lokasi' => htmlspecialchars($this->input->post('lokasi', true)),
+            'biaya' => htmlspecialchars($this->input->post('biaya', true)),
+        ];
+        $this->db->where('musrenbang_id', $data['musrenbang_id']);
+        $this->db->update('musrenbang', $data);
+
+        $this->session->set_flashdata('pesan', '<div class="alert alert-success" role="alert">
+            Musrenbang berhasil diubah
+            </div>');
+        redirect('kecamatan/musrenbang');
+    }
+    public function hapus()
+    {
+        $id = $this->input->get('id');
+        $this->db->where('musrenbang_id', $id);
+        $this->db->delete('musrenbang');
+        $this->session->set_flashdata('pesan', '<div class="alert alert-success" role="alert">Selamat data berhasil dihapus</div>');
+        redirect('kecamatan/musrenbang');
+    }
 }

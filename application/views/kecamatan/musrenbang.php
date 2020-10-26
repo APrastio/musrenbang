@@ -37,28 +37,28 @@
                                 <td><?= $m['kecamatan'] ?></td>
                                 <td><?= $m['kegiatan'] ?></td>
                                 <td><?= $m['sasaran'] ?></td>
-                                <td><?= $m['volume'] ?></td>
+                                <td><?= $m['volume'] ?> &#13221;</td>
                                 <td><?= $m['lokasi'] ?></td>
-                                <td><?= $m['biaya'] ?></td>
+                                <td>Rp.<?= $m['biaya'] ?></td>
                                 <?php if ($m['diakomodir'] == "Menunggu Konfirmasi") : ?>
                                     <td>
                                         <div class="badge badge-pill badge-secondary">Menunggu Konfirmasi</div>
                                     </td>
                                     <?elseif($m['diakomodir']=="Diakomodir"):?>
                                     <td>
-                                        <div class="badge badge-pill badge-danger">Diakomodir</div>
+                                        <div class="badge badge-pill badge-success">Diakomodir</div>
                                     </td>
                                     <?elseif($m['diakomodir']=="Tidak Diakomodir"):?>
                                     <td>
-                                        <div class="badge badge-pill badge-success">Tidak Diakomodir</div>
+                                        <div class="badge badge-pill badge-danger">Tidak Diakomodir</div>
                                     </td>
                                 <?php endif; ?>
                                 <td><?= $m['alasan'] ?></td>
                                 <td>
-                                    <a href="#" class="btn btn-warning">
+                                    <a href="<?= base_url('kecamatan/editMusrenbang') ?>?id=<?= $m['musrenbang_id'] ?>" class="btn btn-warning">
                                         <i class="fas fa-fw fa-edit"></i>
                                     </a>
-                                    <a href="#" class="btn btn-danger">
+                                    <a href="<?= base_url('musrenbang/hapus') ?>?id=<?= $m['musrenbang_id'] ?>" class=" btn btn-danger">
                                         <i class="fas fa-fw fa-trash"></i>
                                     </a>
                                 </td>

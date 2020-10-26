@@ -69,7 +69,16 @@ class Admin extends CI_Controller
         $this->form_validation->set_rules('user_name', 'User name', 'required|trim');
         $this->form_validation->set_rules('password', 'password', 'required|trim|min_length[3]', ['min_length' => 'password to sort']);
         if ($this->form_validation->run() == false) {
-            redirect('admin/edit_user');
+            $id = $this->input->post('id');
+            $this->db->where('user_id', $id);
+            $data['user'] = $this->db->get('user')->row_array();
+
+            $data['posisi'] = $this->db->get('posisi')->result_array();
+            $this->load->view('templates/header');
+            $this->load->view('templates/sidebar');
+            $this->load->view('templates/topbar');
+            $this->load->view('admin/edit_user', $data);
+            $this->load->view('templates/footer');
         } else {
             $data = [
                 'user_id' => htmlspecialchars($this->input->post('id', true)),

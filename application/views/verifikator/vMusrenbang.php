@@ -17,7 +17,6 @@
                                  <tr>
                                      <th>No</th>
                                      <th>Kecamatan</th>
-                                     <th>Kelurahan</th>
                                      <th>Kegiatan</th>
                                      <th>Sasaran</th>
                                      <th>Volume</th>
@@ -27,24 +26,27 @@
                                  </tr>
                              </thead>
                              <tbody>
-                                 <tr>
-                                     <td>1</td>
-                                     <td>test</td>
-                                     <td>test</td>
-                                     <td>test</td>
-                                     <td>test</td>
-                                     <td>test</td>
-                                     <td>test</td>
-                                     <td>test</td>
-                                     <td>
-                                         <a href="#" class="btn btn-success">
-                                             <i class="fas fa-fw fa-check"></i>
-                                         </a>
-                                         <a href="<?= base_url('verifikator/keterangan') ?>" class="btn btn-danger">
-                                             <i class="fas fa-fw fa-times"></i>
-                                         </a>
-                                     </td>
-                                 </tr>
+                                 <?php
+                                    $i = 1;
+                                    foreach ($musrenbang as $m) : ?>
+                                     <tr>
+                                         <td><?= $i++ ?></td>
+                                         <td><?= $m['kecamatan'] ?></td>
+                                         <td><?= $m['kegiatan'] ?></td>
+                                         <td><?= $m['sasaran'] ?></td>
+                                         <td><?= $m['volume'] ?>&#13221;</td>
+                                         <td><?= $m['lokasi'] ?></td>
+                                         <td>Rp.<?= $m['biaya'] ?></td>
+                                         <td>
+                                             <a href="<?= base_url('verifikator/verifyMusrenbang') ?>?id=<?= $m['musrenbang_id'] ?>&diak=Diakomodir" class="btn btn-success">
+                                                 <i class="fas fa-fw fa-check"></i>
+                                             </a>
+                                             <a href="<?= base_url('verifikator/verifyMusrenbang') ?>?id=<?= $m['musrenbang_id'] ?>&diak=Tidak Diakomodir" class="btn btn-danger">
+                                                 <i class="fas fa-fw fa-times"></i>
+                                             </a>
+                                         </td>
+                                     </tr>
+                                 <?php endforeach; ?>
                              </tbody>
                          </table>
                      </div>

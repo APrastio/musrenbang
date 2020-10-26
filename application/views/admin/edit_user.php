@@ -14,16 +14,19 @@
                     <input type="hidden" value="<?= $user['user_id'] ?>" name="id">
                     <label>Nama</label>
                     <input type="text" class="form-control" name="name" value="<?= $user['name'] ?>">
+                    <?= form_error('name', ' <small class="text-danger pl-3">', '</small>') ?>
                 </div>
 
                 <div class="form-group">
                     <label>Username</label>
                     <input type="text" class="form-control" name="user_name" value="<?= $user['user_name'] ?>">
+                    <?= form_error('user_name', ' <small class="text-danger pl-3">', '</small>') ?>
                 </div>
 
                 <div class=" form-group">
                     <label>Password</label>
                     <input type="text" name="password" class="form-control" value="1234">
+                    <?= form_error('password', ' <small class="text-danger pl-3">', '</small>') ?>
                 </div>
 
                 <div class=" form-group">

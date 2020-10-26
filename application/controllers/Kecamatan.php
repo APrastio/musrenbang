@@ -32,4 +32,17 @@ class Kecamatan extends CI_Controller
         $this->load->view('kecamatan/inputMusrenbang');
         $this->load->view('templates/footer');
     }
+
+
+    public function editMusrenbang()
+    {
+        $id = $this->input->get('id');
+        $this->db->where('musrenbang_id', $id);
+        $data['musrenbang'] = $this->db->get('musrenbang')->row_array();
+        $this->load->view('templates/header');
+        $this->load->view('templates/sidebar');
+        $this->load->view('templates/topbar');
+        $this->load->view('kecamatan/editMusrenbang', $data);
+        $this->load->view('templates/footer');
+    }
 }

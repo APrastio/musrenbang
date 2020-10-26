@@ -9,14 +9,17 @@
     <!-- Content Row -->
     <div class="row">
         <div class="col-10">
-            <form action="" method="">
+            <form action="<?= base_url('verifikator/verifyMusrenbang') ?>" method="post">
 
                 <div class="form-group">
+                    <input type="hidden" name="id" value="<?= $_GET['id'] ?>">
+                    <input type="hidden" name="diakomodir">
                     <label>Keterangan</label>
-                    <textarea class="form-control" rows="5"></textarea>
+                    <textarea class="form-control" rows="5" name="alasan"></textarea>
+                    <?= form_error('alasan', ' <small class="text-danger pl-3">', '</small>') ?>
                 </div>
 
-                <button class="btn btn-primary float-right">Submit</button>
+                <button class="btn btn-primary float-right" type="submit">Submit</button>
             </form>
         </div>
 

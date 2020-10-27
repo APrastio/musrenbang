@@ -6,7 +6,7 @@
         <h1 class="h3 mb-0 text-gray-800">Data Musrenbang</h1>
     </div>
 
-    <h5 class="h6 mb-0 text-gray-800">Tahun : 2020</h5>
+    <h5 class="h6 mb-0 text-gray-800">Tahun : <?= date('Y') ?></h5>
     <?php
     ?>
     <!-- Content Row -->
@@ -20,12 +20,8 @@
                             <th>No</th>
                             <th>Kecamatan</th>
                             <th>Kegiatan</th>
-                            <th>Sasaran</th>
-                            <th>Volume</th>
-                            <th>Lokasi</th>
                             <th>Biaya</th>
                             <th>Diakomodir</th>
-                            <th>Alasan tidak diakomodir</th>
                             <th>Aksi</th>
                         </tr>
                     </thead>
@@ -36,30 +32,24 @@
                                 <td><?= $i++ ?></td>
                                 <td><?= $m['kecamatan'] ?></td>
                                 <td><?= $m['kegiatan'] ?></td>
-                                <td><?= $m['sasaran'] ?></td>
-                                <td><?= $m['volume'] ?> &#13221;</td>
-                                <td><?= $m['lokasi'] ?></td>
-                                <td>Rp.<?= $m['biaya'] ?></td>
+                                <td>Rp.<?= number_format($m['biaya'], 2, ",", ".");?></td>
                                 <?php if ($m['diakomodir'] == "Menunggu Konfirmasi") : ?>
                                     <td>
-                                        <div class="badge badge-pill badge-secondary">Menunggu Konfirmasi</div>
+                                        <h5><span class="badge badge-pill badge-secondary">Menunggu Konfirmasi</span></h5>
                                     </td>
-                                    <?elseif($m['diakomodir']=="Diakomodir"):?>
+                                <?elseif($m['diakomodir']=="Diakomodir"):?>
                                     <td>
-                                        <div class="badge badge-pill badge-success">Diakomodir</div>
+                                        <h5><span class="badge badge-pill badge-success">Diakomodir</span></h5>
                                     </td>
-                                    <?elseif($m['diakomodir']=="Tidak Diakomodir"):?>
+                                <?elseif($m['diakomodir']=="Tidak Diakomodir"):?>
                                     <td>
-                                        <div class="badge badge-pill badge-danger">Tidak Diakomodir</div>
+                                        <h5><span class="badge badge-pill badge-danger">Tidak Diakomodir</span></h5>
                                     </td>
                                 <?php endif; ?>
-                                <td><?= $m['alasan'] ?></td>
                                 <td>
-                                    <a href="<?= base_url('kecamatan/editMusrenbang') ?>?id=<?= $m['musrenbang_id'] ?>" class="btn btn-warning">
-                                        <i class="fas fa-fw fa-edit"></i>
-                                    </a>
-                                    <a href="<?= base_url('musrenbang/hapus') ?>?id=<?= $m['musrenbang_id'] ?>" class=" btn btn-danger">
-                                        <i class="fas fa-fw fa-trash"></i>
+                                    <a href="<?= base_url('kecamatan/detailMusrenbang/' .$m['musrenbang_id']) ?>" class="btn btn-info">
+                                        <i class="fas fa-info-circle"></i>
+                                        Detail
                                     </a>
                                 </td>
                             </tr>

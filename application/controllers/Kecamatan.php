@@ -45,4 +45,34 @@ class Kecamatan extends CI_Controller
         $this->load->view('kecamatan/editMusrenbang', $data);
         $this->load->view('templates/footer');
     }
+
+    public function detailMusrenbang($id)
+    {
+        $data['musrenbang'] = $this->db->select('musrenbang.*, user.Kecamatan')
+                                       ->from('musrenbang')
+                                       ->join('user', 'user.user_id = musrenbang.user_id')
+                                       ->where('musrenbang_id', intval($id))
+                                       ->get()->row_array();
+
+        $this->load->view('templates/header');
+        $this->load->view('templates/sidebar');
+        $this->load->view('templates/topbar');
+        $this->load->view('kecamatan/detailMusrenbang', $data);
+        $this->load->view('templates/footer');
+    }
+
+    public function printMusrenbang($id)
+    {
+        $data['musrenbang'] = $this->db->select('musrenbang.*, user.Kecamatan')
+                                        ->from('musrenbang')
+                                        ->join('user', 'user.user_id = musrenbang.user_id')
+                                        ->where('musrenbang_id', intval($id))
+                                        ->get()->row_array();
+    
+        $this->load->library('pdf');
+    
+        $this->pdf->setPaper('A4', 'potrait');
+        $this->pdf->filename = 'ID' . $data['musrenbang']['musrenbang_id'] . '-' . $data['musrenbang']['Kecamatan'] . '.pdf';
+        $this->pdf->load_view('kecamatan/printMusrenbang', $data);
+    }
 }

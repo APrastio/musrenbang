@@ -24,6 +24,8 @@ class Admin extends CI_Controller
     public function data_user()
     {
         $data['user'] = $this->db->get('user')->result_array();
+        $this->load->model('AdminModel', 'user');
+        $data['user'] = $this->user->getUser();
         $this->load->view('templates/header');
         $this->load->view('templates/sidebar');
         $this->load->view('templates/topbar');
@@ -46,8 +48,8 @@ class Admin extends CI_Controller
         $id = $this->input->get('id');
         $this->db->where('user_id', $id);
         $this->db->delete('user');
-        $this->data_user();
         $this->session->set_flashdata('pesan', '<div class="alert alert-success" role="alert">Selamat data berhasil dihapus</div>');
+        $this->data_user();
     }
 
     public function edit_user()
@@ -55,8 +57,8 @@ class Admin extends CI_Controller
         $id = $this->input->get('id');
         $this->db->where('user_id', $id);
         $data['user'] = $this->db->get('user')->row_array();
-
-        $data['posisi'] = $this->db->get('posisi')->result_array();
+        $data['posisi'] = [['role_id' => '3', 'posisi' => 'Administrator'], ['role_id' => '1', 'posisi' => 'Kecamatan'], ['role_id' => '2', 'posisi' => 'Verifikator'], ['role_id' => '4', 'posisi' => 'Instasi']];
+        $data['instasi'] = $this->db->get('instasi')->result_array();
         $this->load->view('templates/header');
         $this->load->view('templates/sidebar');
         $this->load->view('templates/topbar');

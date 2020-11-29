@@ -48,8 +48,21 @@
                     <input type="text" class="form-control" name="kecamatan" value="<?= $user['Kecamatan'] ?>">
                     <small>Kosongkan jika posisi bukan kecamatan</small>
                 </div>
+                <div class="form-group">
+                    <label>Nama Instansi</label>
+                    <select class="form-control" name="instasi">
+                        <?php foreach ($instasi as $i) : ?>
+                            <?php if ($user['instasi_id'] == $i['instasi_id']) : ?>
+                                <option selected value="<?= $i['instasi_id'] ?>"><?= $i['nama_instansi'] ?></option>
+                            <?php else : ?>
+                                <option value="<?= $i['instasi_id'] ?>"><?= $i['nama_instansi'] ?></option>
+                            <?php endif; ?>
+                        <?php endforeach; ?>
+                    </select>
+                    <small>Kosongkan jika posisi bukan instansi</small>
+                </div>
 
-                <button class=" btn btn-primary float-right">Simpan</button>
+                <button class=" btn btn-primary float-right" type="submit">Simpan</button>
             </form>
         </div>
 

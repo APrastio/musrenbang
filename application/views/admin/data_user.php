@@ -8,7 +8,7 @@
 
     <!-- Content Row -->
     <div class="row">
-        <div class="col-8">
+        <div class="col-10">
 
             <?= $this->session->flashdata('pesan'); ?>
             <a href="<?= base_url('admin/tambah_user') ?>" class="btn btn-primary btn-sm float-right">Tambah User</a>
@@ -22,6 +22,7 @@
                             <th>Username</th>
                             <th>Posisi</th>
                             <th>Kecamatan</th>
+                            <th>Nama Instansi</th>
                             <th>Aksi</th>
                         </tr>
                     </thead>
@@ -39,9 +40,12 @@
                                     $role_name = "Verifikator";
                                 } else if ($u['role_id'] == 3) {
                                     $role_name = "Administrator";
+                                } else if ($u['role_id'] == 4) {
+                                    $role_name = "Instasi";
                                 } ?>
                                 <td><?= $role_name ?></td>
                                 <td><?= $u['Kecamatan'] ?></td>
+                                <td><?= $u['nama_instansi'] ?></td>
                                 <td>
                                     <a href="<?= base_url("admin/edit_user") ?>?id=<?= $u['user_id'] ?>" class="btn btn-warning">
                                         <i class="fas fa-fw fa-edit"></i>

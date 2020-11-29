@@ -13,13 +13,15 @@
             $data['role'] = 'Kecamatan';
         } else if ($role == 2) {
             $data['role'] = 'Verifikator';
+        } else if ($role == 4) {
+            $data['role'] = 'Instasi';
         } ?>
         <div class="sidebar-brand-text mx-3"><?= $data['role'] ?></div>
     </a>
 
     <?php
     $role_id = $this->session->userdata('role_id');
-    if ($role_id == 1 || $role_id == 2 || $role_id == 3) :
+    if ($role_id == 1 || $role_id == 2 || $role_id == 3 || $role_id == 4) :
     ?>
 
         <!-- Divider -->
@@ -50,13 +52,27 @@
             </li>
 
             <li class="nav-item">
-                <a class="nav-link" href="<?= base_url('kecamatan/inputMusrenbang') ?>">
+                <a class="nav-link" href="<?= base_url('musrenbang/tambahMusrenbang') ?>">
                     <i class="fas fa-fw fa-plus-square"></i>
                     <span>Input Musrenbang</span>
                 </a>
             </li>
         <?php endif; ?>
+        <?php if ($role_id == 4 || $role_id == 3) : ?>
+            <!-- Divider -->
+            <hr class="sidebar-divider">
 
+            <!-- Heading -->
+            <div class="sidebar-heading">
+                INSTANSI
+            </div>
+
+            <li class="nav-item">
+                <a class="nav-link" href="<?= base_url('instasi/index') ?>">
+                    <i class="fas fa-fw fa-tools"></i>
+                    <span>Data Musrenbang</span></a>
+            </li>
+        <?php endif; ?>
         <?php if ($role_id == 2 || $role_id == 3) : ?>
             <!-- Divider -->
             <hr class="sidebar-divider">
@@ -74,7 +90,7 @@
             </li>
 
             <li class="nav-item">
-                <a class="nav-link" href="<?= base_url('verifikator/musrenbangDiterima') ?>">
+                <a class="nav-link" href="<?= base_url('verifikator/musrenbangDisetujui') ?>">
                     <i class="fas fa-fw fa-clipboard-check"></i>
                     <span>Musrenbang Diterima</span>
                 </a>

@@ -18,10 +18,12 @@
                     <thead>
                         <tr>
                             <th>No</th>
-                            <th>Kecamatan</th>
-                            <th>Kegiatan</th>
+                            <th>Jenis Kegiatan</th>
+                            <th>Sasaran</th>
+                            <th>Volume</th>
+                            <th>Lokasi</th>
                             <th>Biaya</th>
-                            <th>Diakomodir</th>
+                            <th>Keputusan Pemerintah</th>
                             <th>Aksi</th>
                         </tr>
                     </thead>
@@ -30,24 +32,26 @@
                         foreach ($musrenbang as $m) : ?>
                             <tr>
                                 <td><?= $i++ ?></td>
-                                <td><?= $m['kecamatan'] ?></td>
-                                <td><?= $m['kegiatan'] ?></td>
-                                <td>Rp.<?= number_format($m['biaya'], 2, ",", ".");?></td>
-                                <?php if ($m['diakomodir'] == "Menunggu Konfirmasi") : ?>
+                                <td><?= $m['jenis_kegiatan'] ?></td>
+                                <td><?= $m['sasaran'] ?></td>
+                                <td><?= $m['volume'] ?></td>
+                                <td><?= $m['lokasi'] ?></td>
+                                <td>Rp.<?= number_format($m['biaya'], 2, ",", "."); ?></td>
+                                <?php if ($m['keputusan'] == "Diproses") : ?>
                                     <td>
-                                        <h5><span class="badge badge-pill badge-secondary">Menunggu Konfirmasi</span></h5>
+                                        <h5><span class="badge badge-pill badge-warning">Diproses</span></h5>
                                     </td>
-                                <?elseif($m['diakomodir']=="Diakomodir"):?>
+                                    <?elseif($m['keputusan']=="Disetujui"):?>
                                     <td>
-                                        <h5><span class="badge badge-pill badge-success">Diakomodir</span></h5>
+                                        <h5><span class="badge badge-pill badge-success">Disetujui</span></h5>
                                     </td>
-                                <?elseif($m['diakomodir']=="Tidak Diakomodir"):?>
+                                    <?elseif($m['keputusan']=="Ditolak"):?>
                                     <td>
-                                        <h5><span class="badge badge-pill badge-danger">Tidak Diakomodir</span></h5>
+                                        <h5><span class="badge badge-pill badge-danger">Tidak Disetujui</span></h5>
                                     </td>
                                 <?php endif; ?>
                                 <td>
-                                    <a href="<?= base_url('kecamatan/detailMusrenbang/' .$m['musrenbang_id']) ?>" class="btn btn-info">
+                                    <a href="<?= base_url('kecamatan/detailMusrenbang/' . $m['musrenbang_id']) ?>" class="btn btn-info">
                                         <i class="fas fa-info-circle"></i>
                                         Detail
                                     </a>

@@ -34,6 +34,7 @@
                                      <option value="3">Administrator</option>
                                      <option value="1">Kecamatan</option>
                                      <option value="2">Verifikator</option>
+                                     <option value="4">Instansi</option>
                                  </select>
                              </div>
 
@@ -43,6 +44,18 @@
                                  <small>Kosongkan jika posisi bukan kecamatan</small>
                              </div>
 
+                             <div class="form-group">
+                        <label>Nama Instansi</label>
+                        <select class="form-control" name="instasi">
+                           <option value="5"></option>
+                           <option value="1">Bidang Perencanaan, Data dan Evaluasi Pembangunan</option>
+                           <option value="2">Bidang Ekonomi dan Sosial Kemasyarakatan</option>
+                           <option value="3">Bidang Fisik dan Prasarana</option>
+                           <option value="4">Bidang Penelitian, Pengembangan dan Pemerintahan Umum</option>
+                        </select>
+                        <small>Kosongkan jika posisi bukan instansi</small>
+                     </div>
+                     
                              <button type="submit" class="btn btn-primary float-right">Simpan</button>
                          </form>
                      </div>

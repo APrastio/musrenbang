@@ -13,8 +13,8 @@ class Musrenbang extends CI_Controller
 
     public function tambahMusrenbang()
     {
-        $this->form_validation->set_rules('kegiatan', 'kegiatan', 'required|trim');
         $this->form_validation->set_rules('sasaran', 'sasaran', 'required|trim');
+        $this->form_validation->set_rules('Ksasaran', 'Ksasaran', 'required|trim');
         $this->form_validation->set_rules('volume', 'volume', 'required|trim');
         $this->form_validation->set_rules('lokasi', 'lokasi', 'required|trim');
         $this->form_validation->set_rules('biaya', 'biaya', 'required|trim');
@@ -27,17 +27,22 @@ class Musrenbang extends CI_Controller
             $this->load->view('templates/footer');
         } else {
             $data = [
-                'kegiatan' => htmlspecialchars($this->input->post('kegiatan', true)),
+                'jenis_kegiatan' => htmlspecialchars($this->input->post('jenis', true)),
                 'sasaran' => htmlspecialchars($this->input->post('sasaran', true)),
+                'keterangan' => htmlspecialchars($this->input->post('Ksasaran', true)),
                 'volume' => htmlspecialchars($this->input->post('volume', true)),
                 'lokasi' => htmlspecialchars($this->input->post('lokasi', true)),
                 'biaya' => htmlspecialchars($this->input->post('biaya', true)),
                 'date' => time(),
-                'diakomodir' => "Menunggu Konfirmasi",
-                'alasan' => "",
                 'user_id' => $_SESSION['user_id']
             ];
+
             $this->db->insert('musrenbang', $data);
+            $this->db->select_max('musrenbang_id');
+            $this->db->from('musrenbang');
+            $b = $this->db->get()->row_array();
+            $a = ['musrenbang_id' => $b['musrenbang_id'], 'keputusan' => 'Diproses'];
+            $this->db->insert('pengesahan', $a);
 
 
             $this->session->set_flashdata('pesan', '<div class="alert alert-success" role="alert">
@@ -51,12 +56,15 @@ class Musrenbang extends CI_Controller
     {
 
         $data = [
-            'musrenbang_id' => htmlspecialchars($this->input->post('id', true)),
-            'kegiatan' => htmlspecialchars($this->input->post('kegiatan', true)),
+            'musrenbang_id' => $this->input->post('id'),
+            'jenis_kegiatan' => htmlspecialchars($this->input->post('jenis', true)),
             'sasaran' => htmlspecialchars($this->input->post('sasaran', true)),
+            'keterangan' => htmlspecialchars($this->input->post('Ksasaran', true)),
             'volume' => htmlspecialchars($this->input->post('volume', true)),
             'lokasi' => htmlspecialchars($this->input->post('lokasi', true)),
             'biaya' => htmlspecialchars($this->input->post('biaya', true)),
+            'date' => time(),
+            'user_id' => $_SESSION['user_id']
         ];
         $this->db->where('musrenbang_id', $data['musrenbang_id']);
         $this->db->update('musrenbang', $data);
@@ -66,9 +74,8 @@ class Musrenbang extends CI_Controller
             </div>');
         redirect('kecamatan/musrenbang');
     }
-    public function hapus()
+    public function hapus($id)
     {
-        $id = $this->input->get('id');
         $this->db->where('musrenbang_id', $id);
         $this->db->delete('musrenbang');
         $this->session->set_flashdata('pesan', '<div class="alert alert-success" role="alert">Selamat data berhasil dihapus</div>');

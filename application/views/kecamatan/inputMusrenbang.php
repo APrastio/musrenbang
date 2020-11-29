@@ -13,15 +13,22 @@
         <div class="col-10">
             <form action="<?= base_url('musrenbang/tambahMusrenbang') ?>" method="post">
                 <div class="form-group">
-                    <label>Kegiatan</label>
-                    <input type="text" name="kegiatan" class="form-control">
-                    <?= form_error('kegiatan', ' <small class="text-danger pl-3">', '</small>') ?>
+                    <label>Jenis Kegiatan</label>
+                    <select class="form-control" name="jenis">
+                        <option value="FISIK/KONTRUKSI">FISIK/KONTRUKSI</option>
+                        <option value="NON FISIK">NON FISIK</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>sasaran</label>
+                    <input type="text" name="sasaran" class="form-control">
+                    <?= form_error('sasaran', ' <small class="text-danger pl-3">', '</small>') ?>
                 </div>
 
                 <div class="form-group">
-                    <label>Sasaran</label>
-                    <textarea class="form-control" name="sasaran" rows="5"></textarea>
-                    <?= form_error('sasaran', ' <small class="text-danger pl-3">', '</small>') ?>
+                    <label>Keterangan Sasaran</label>
+                    <textarea class="form-control" name="Ksasaran" rows="5"></textarea>
+                    <?= form_error('Ksasaran', ' <small class="text-danger pl-3">', '</small>') ?>
                 </div>
 
                 <div class="row">

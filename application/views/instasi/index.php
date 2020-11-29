@@ -7,7 +7,7 @@
    </div>
 
    <h5 class="h6 mb-0 text-gray-800">Tahun : 2020</h5>
-   <?= $this->session->flashdata('pesan'); ?>
+
    <!-- Content Row -->
    <div class="row mt-4">
       <div class="col">
@@ -37,7 +37,7 @@
                         <td><?= $m['lokasi'] ?></td>
                         <td>Rp.<?= number_format($m['biaya'], 2, ",", "."); ?></td>
                         <td>
-                           <a href="<?= base_url("verifikator/musrenbangDiterimaDetail/") . $id = $m['musrenbang_id'] ?>" class="btn btn-info">
+                           <a href="<?= base_url('instasi/detail/') . $m['musrenbang_id']; ?>" class="btn btn-info">
                               <i class="fas fa-fw fa-info"></i>
                               Detail
                            </a>

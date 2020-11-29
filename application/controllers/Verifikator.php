@@ -23,8 +23,21 @@ class Verifikator extends CI_Controller
         $this->load->view('verifikator/vMusrenbang', $data);
         $this->load->view('templates/footer');
     }
+    public function vMusrenbangDetail($id)
+    {
+        $this->load->model('MusrenbangModel', 'musrenbang');
+        $data['musrenbang'] = $this->musrenbang->getMusrenbangMenungguDetail($id);
+        $data['persetujuan'] = $this->musrenbang->getinstansi($id);
+        $this->db->where('musrenbang_id', $id);
+        $data['cek'] = $this->db->get('persetujuan')->result();
+        $this->load->view('templates/header');
+        $this->load->view('templates/sidebar');
+        $this->load->view('templates/topbar');
+        $this->load->view('verifikator/vMusrenbangDetail', $data);
+        $this->load->view('templates/footer');
+    }
 
-    public function musrenbangDiterima()
+    public function musrenbangDisetujui()
     {
         $data['musrenbang'] = $this->db->get('musrenbang')->result_array();
         $this->load->model('MusrenbangModel', 'musrenbang');
@@ -33,6 +46,19 @@ class Verifikator extends CI_Controller
         $this->load->view('templates/sidebar');
         $this->load->view('templates/topbar');
         $this->load->view('verifikator/musrenbangDiterima', $data);
+        $this->load->view('templates/footer');
+    }
+    public function musrenbangDiterimaDetail($id)
+    {
+        $this->load->model('MusrenbangModel', 'musrenbang');
+        $data['musrenbang'] = $this->musrenbang->getMusrenbangDiterimaDetail($id);
+        $data['persetujuan'] = $this->musrenbang->getinstansi($id);
+        $this->db->where('musrenbang_id', $id);
+        $data['cek'] = $this->db->get('persetujuan')->result();
+        $this->load->view('templates/header');
+        $this->load->view('templates/sidebar');
+        $this->load->view('templates/topbar');
+        $this->load->view('verifikator/musrenbangDiterimaDetail', $data);
         $this->load->view('templates/footer');
     }
 
@@ -47,52 +73,33 @@ class Verifikator extends CI_Controller
         $this->load->view('verifikator/musrenbangDitolak', $data);
         $this->load->view('templates/footer');
     }
-    public function keterangan()
-    {
 
+    public function musrenbangDitolakDetail($id)
+    {
+        $this->load->model('MusrenbangModel', 'musrenbang');
+        $data['musrenbang'] = $this->musrenbang->getMusrenbangDitolakDetail($id);
+        $data['persetujuan'] = $this->musrenbang->getinstansi($id);
+        $this->db->where('musrenbang_id', $id);
+        $data['cek'] = $this->db->get('persetujuan')->result();
         $this->load->view('templates/header');
         $this->load->view('templates/sidebar');
         $this->load->view('templates/topbar');
-        $this->load->view('verifikator/keterangan');
+        $this->load->view('verifikator/musrenbangDitolakDetail', $data);
         $this->load->view('templates/footer');
     }
-    public function verifyMusrenbang()
+
+    public function verifyMusrenbang($musren_id, $keputusan, $pengesahan_id)
     {
-        $diak = $this->input->get('diak');
-        if ($diak == "Diakomodir") {
-            $data = [
-                'musrenbang_id' => $this->input->get('id'),
-                'diakomodir' => $diak
-            ];
-            $this->db->where('musrenbang_id', $data['musrenbang_id']);
-            $this->db->update('musrenbang', $data);
-            $this->session->set_flashdata('pesan', '<div class="alert alert-success" role="alert">
-            Musrenbang berhasil disetujui
+        $data = [
+            'musrenbang_id' => $musren_id,
+            'keputusan' => $keputusan,
+            'date' => time()
+        ];
+        $this->db->where('pengesahan_id', $pengesahan_id);
+        $this->db->update('pengesahan', $data);
+        $this->session->set_flashdata('pesan', '<div class="alert alert-success" role="alert">
+            Musrenbang berhasil ' . strtolower($keputusan) . '
             </div>');
-            redirect('verifikator/musrenbangDiterima');
-        } else {
-            $this->form_validation->set_rules('alasan', 'keterangan', 'required|trim');
-            if ($this->form_validation->run() == false) {
-
-                $this->load->view('templates/header');
-                $this->load->view('templates/sidebar');
-                $this->load->view('templates/topbar');
-                $this->load->view('verifikator/keterangan');
-                $this->load->view('templates/footer');
-            } else {
-                $data = [
-                    'musrenbang_id' =>  htmlspecialchars($this->input->post('id', true)),
-                    'diakomodir' =>  htmlspecialchars($this->input->post('diakomodir', true)),
-                    'alasan' => htmlspecialchars($this->input->post('alasan', true))
-                ];
-                $this->db->where('musrenbang_id', $data['musrenbang_id']);
-                $this->db->update('musrenbang', $data);
-
-                $this->session->set_flashdata('pesan', '<div class="alert alert-success" role="alert">
-            Musrenbang berhasil ditolak
-            </div>');
-                redirect('verifikator/musrenbangDitolak');
-            }
-        }
+        redirect('verifikator/musrenbang' . $keputusan);
     }
 }

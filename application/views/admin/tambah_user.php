@@ -46,6 +46,7 @@
                              <div class="form-group">
                                  <label>Nama Instansi</label>
                                  <?php if (sizeof($cek) == 4) : ?>
+                                     <input type="hidden" name="instasi" value="5">
                                      <input type="text" class="form-control" readonly value="Keempat Instasi sudah dibuat">
                                  <?php elseif (sizeof($cek) <= 3) : ?>
                                      <select class="form-control" name="instasi">

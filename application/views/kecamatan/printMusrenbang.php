@@ -91,7 +91,7 @@
             <td style="padding-left:8px"><?= $p['keterangan'] ?></td>
          <?php elseif ($p['status'] == 'Tidak Disetujui') : ?>
             <td>
-               <center style="color:danger">Tidak Disetujui</center>
+               <center style="color:red">Tidak Disetujui</center>
             </td>
             <td style="padding-left:8px"><?= $p['keterangan'] ?></td>
          <?php elseif ($p['status'] == 'Tidak Terkait') : ?>

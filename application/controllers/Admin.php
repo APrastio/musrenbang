@@ -1,4 +1,7 @@
 <?php
+
+use phpDocumentor\Reflection\Types\This;
+
 defined('BASEPATH') or exit('No direct script access allowed');
 
 class Admin extends CI_Controller
@@ -54,11 +57,12 @@ class Admin extends CI_Controller
 
     public function tambah_user()
     {
-
+        $this->db->select('instasi_id')->from('user')->not_like("instasi_id", 5);
+        $data['cek'] = $this->db->get()->result_array();
         $this->load->view('templates/header');
         $this->load->view('templates/sidebar');
         $this->load->view('templates/topbar');
-        $this->load->view('admin/tambah_user');
+        $this->load->view('admin/tambah_user', $data);
         $this->load->view('templates/footer');
     }
 

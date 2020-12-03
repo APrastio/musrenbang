@@ -38,6 +38,7 @@
                                 <hr>
                                 <h2 class="h4 text-gray-900 mb-4">Selamat Datang</h2>
                             </div>
+                            <?= $this->session->flashdata('pesan'); ?>
                             <form class="user" action="<?= base_url('auth') ?>" method="post">
                                 <div class="form-group">
                                     <input type="text" class="form-control form-control-user" placeholder="Username..." name="user_name">

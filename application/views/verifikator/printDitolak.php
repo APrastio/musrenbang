@@ -91,7 +91,7 @@
                 <td style="padding-left:8px"><?= $p['keterangan'] ?></td>
             <?php elseif ($p['status'] == 'Tidak Disetujui') : ?>
                 <td>
-                    <center style="color:danger">Tidak Disetujui</center>
+                    <center style="color:red">Tidak Disetujui</center>
                 </td>
                 <td style="padding-left:8px"><?= $p['keterangan'] ?></td>
             <?php elseif ($p['status'] == 'Tidak Terkait') : ?>
@@ -113,3 +113,16 @@
     </tr>
 
 </table>
+<?php
+$path = 'assets/img/ttd.png';
+$type = pathinfo($path, PATHINFO_EXTENSION);
+$data = file_get_contents($path);
+$base64 = 'data:image/' . $type . ';base64,' . base64_encode($data);
+?>
+
+<div style="float:right">
+    <h4>Mengetahui,</h4>
+    <h4>Wali Kota Tangerang Selatan</h4>
+    <img src="<?php echo $base64 ?>" width="200" height="70" style="margin-top:10px" />
+    <h4><?= $verifikator['name'] ?></h4>
+</div>

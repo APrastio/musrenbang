@@ -29,8 +29,7 @@ class MusrenbangModel extends CI_Model
         $query = "SELECT `musrenbang`.*,`pengesahan`.`keputusan`,`user`.`kecamatan`
                 FROM `musrenbang` JOIN `pengesahan`
                 ON `musrenbang`.`musrenbang_id`=`pengesahan`.`musrenbang_id`
-                JOIN`user` ON `musrenbang`.`user_id`=`user`.`user_id`
-                WHERE `pengesahan`.`keputusan`='Diproses'";
+                JOIN`user` ON `musrenbang`.`user_id`=`user`.`user_id`";
         return $this->db->query($query)->result_array();
     }
 

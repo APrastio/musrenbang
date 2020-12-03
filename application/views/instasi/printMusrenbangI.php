@@ -1,5 +1,5 @@
 <center>
-    <h3>HASIL KESEPAKATAN MUSRENBANG <br> KOTA TANGERANG SELATAN <br> KECAMATAN <?= strtoupper($musrenbang['kecamatan']) ?> TAHUN <?= date('yy', $musrenbang['date']) ?></h3>
+    <h3>USULAN MUSRENBANG <br> KOTA TANGERANG SELATAN <br> KECAMATAN <?= strtoupper($musrenbang['kecamatan']) ?> TAHUN <?= date('yy', $musrenbang['date']) ?></h3>
 </center>
 
 <table border="1" style="border-spacing: 0;" width="100%">

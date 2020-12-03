@@ -106,7 +106,7 @@ class Verifikator extends CI_Controller
         $this->load->model('MusrenbangModel', 'musrenbang');
         $data['musrenbang'] = $this->musrenbang->getMusrenbangMenungguDetail($id);
         $data['persetujuan'] = $this->musrenbang->getinstansi($id);
-
+        $data['verifikator'] = $this->db->get_where('user', ['role_id' => 2])->row_array();
 
         $this->load->library('pdf');
 
@@ -120,7 +120,7 @@ class Verifikator extends CI_Controller
         $this->load->model('MusrenbangModel', 'musrenbang');
         $data['musrenbang'] = $this->musrenbang->getMusrenbangDiterimaDetail($id);
         $data['persetujuan'] = $this->musrenbang->getinstansi($id);
-
+        $data['verifikator'] = $this->db->get_where('user', ['role_id' => 2])->row_array();
 
         $this->load->library('pdf');
 
@@ -133,7 +133,7 @@ class Verifikator extends CI_Controller
         $this->load->model('MusrenbangModel', 'musrenbang');
         $data['musrenbang'] = $this->musrenbang->getMusrenbangDitolakDetail($id);
         $data['persetujuan'] = $this->musrenbang->getinstansi($id);
-
+        $data['verifikator'] = $this->db->get_where('user', ['role_id' => 2])->row_array();
 
         $this->load->library('pdf');
 

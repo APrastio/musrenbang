@@ -12,6 +12,7 @@
    <div class="row mt-4">
       <div class="col">
          <div class="table-responsive">
+            <?= $this->session->flashdata('pesan'); ?>
             <table class="table table-bordered text-center">
                <thead>
                   <tr>

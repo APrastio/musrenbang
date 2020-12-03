@@ -45,14 +45,26 @@
 
                              <div class="form-group">
                                  <label>Nama Instansi</label>
-                                 <select class="form-control" name="instasi">
-                                     <option value="5"></option>
-                                     <option value="1">Bidang Perencanaan, Data dan Evaluasi Pembangunan</option>
-                                     <option value="2">Bidang Ekonomi dan Sosial Kemasyarakatan</option>
-                                     <option value="3">Bidang Fisik dan Prasarana</option>
-                                     <option value="4">Bidang Penelitian, Pengembangan dan Pemerintahan Umum</option>
-                                 </select>
-                                 <small>Kosongkan jika posisi bukan instansi</small>
+                                 <?php if (sizeof($cek) == 4) : ?>
+                                     <input type="text" class="form-control" readonly value="Keempat Instasi sudah dibuat">
+                                 <?php elseif (sizeof($cek) <= 3) : ?>
+                                     <select class="form-control" name="instasi">
+                                         <option value="5"></option>
+                                         <?php if ($cek[0]['instasi_id'] != 1) : ?>
+                                             <option value="1">Bidang Perencanaan, Data dan Evaluasi Pembangunan</option>
+                                         <?php endif; ?>
+                                         <?php if ($cek[1]['instasi_id'] != 2) : ?>
+                                             <option value="2">Bidang Ekonomi dan Sosial Kemasyarakatan</option>
+                                         <?php endif; ?>
+                                         <?php if ($cek[2]['instasi_id'] != 3) : ?>
+                                             <option value="3">Bidang Fisik dan Prasarana</option>
+                                         <?php endif; ?>
+                                         <?php if ($cek[3]['instasi_id'] != 4) : ?>
+                                             <option value="4">Bidang Penelitian, Pengembangan dan Pemerintahan Umum</option>
+                                         <?php endif; ?>
+                                     </select>
+                                     <small>Kosongkan jika posisi bukan instansi</small>
+                                 <?php endif; ?>
                              </div>
 
                              <button type="submit" class="btn btn-primary float-right">Simpan</button>

@@ -13,11 +13,36 @@ class Musrenbang extends CI_Controller
 
     public function tambahMusrenbang()
     {
-        $this->form_validation->set_rules('sasaran', 'sasaran', 'required|trim');
-        $this->form_validation->set_rules('Ksasaran', 'Ksasaran', 'required|trim');
-        $this->form_validation->set_rules('volume', 'volume', 'required|trim');
-        $this->form_validation->set_rules('lokasi', 'lokasi', 'required|trim');
-        $this->form_validation->set_rules('biaya', 'biaya', 'required|trim');
+        $this->form_validation->set_rules(
+            'sasaran',
+            'sasaran',
+            'required|trim',
+            array('required' => 'Field sasaran tidak boleh kosong')
+        );
+        $this->form_validation->set_rules(
+            'Ksasaran',
+            'keterangan sasaran',
+            'required|trim',
+            array('required' => 'Field keterangan sasaran tidak boleh kosong')
+        );
+        $this->form_validation->set_rules(
+            'volume',
+            'volume',
+            'required|trim',
+            array('required' => 'Field volume tidak boleh kosong')
+        );
+        $this->form_validation->set_rules(
+            'lokasi',
+            'lokasi',
+            'required|trim',
+            array('required' => 'Field lokasi tidak boleh kosong')
+        );
+        $this->form_validation->set_rules(
+            'biaya',
+            'biaya',
+            'required|trim',
+            array('required' => 'Field biaya tidak boleh kosong')
+        );
         if ($this->form_validation->run() == false) {
 
             $this->load->view('templates/header');

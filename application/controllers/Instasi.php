@@ -62,7 +62,7 @@ class Instasi extends CI_Controller
         ];
         $this->db->insert("persetujuan", $data);
         $this->session->set_flashdata('pesan', '<div class="alert alert-success" role="alert">
-            Musrenbang berhasil diubah
+            Keputusan Musrenbang Berhasil ' . $data['status'] . '
             </div>');
         redirect('instasi');
     }
@@ -78,7 +78,7 @@ class Instasi extends CI_Controller
 
         $this->db->insert("persetujuan", $data);
         $this->session->set_flashdata('pesan', '<div class="alert alert-success" role="alert">
-            Musrenbang berhasil diubah
+        Keputusan Musrenbang Tidak Terkait
             </div>');
         redirect('instasi');
     }

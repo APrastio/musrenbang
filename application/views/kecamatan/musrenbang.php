@@ -37,19 +37,15 @@
                                 <td><?= $m['volume'] ?></td>
                                 <td><?= $m['lokasi'] ?></td>
                                 <td>Rp.<?= number_format($m['biaya'], 2, ",", "."); ?></td>
-                                <?php if ($m['keputusan'] == "Diproses") : ?>
-                                    <td>
+                                <td>
+                                    <?php if ($m['keputusan'] == "Diproses") : ?>
                                         <h5><span class="badge badge-pill badge-warning">Diproses</span></h5>
-                                    </td>
-                                    <?elseif($m['keputusan']=="Disetujui"):?>
-                                    <td>
+                                        <?elseif($m['keputusan']=="Disetujui"):?>
                                         <h5><span class="badge badge-pill badge-success">Disetujui</span></h5>
-                                    </td>
-                                    <?elseif($m['keputusan']=="Ditolak"):?>
-                                    <td>
+                                        <?elseif($m['keputusan']=="Ditolak"):?>
                                         <h5><span class="badge badge-pill badge-danger">Tidak Disetujui</span></h5>
-                                    </td>
-                                <?php endif; ?>
+                                    <?php endif; ?>
+                                </td>
                                 <td>
                                     <a href="<?= base_url('kecamatan/detailMusrenbang/' . $m['musrenbang_id']) ?>" class="btn btn-info">
                                         <i class="fas fa-info-circle"></i>

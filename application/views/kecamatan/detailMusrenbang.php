@@ -5,7 +5,7 @@
    <div class="d-sm-flex align-items-center justify-content-between mb-4">
       <h1 class="h3 mb-0 text-gray-800">Detail Musrenbang</h1>
    </div>
-   <?php var_dump($musrenbang) ?>
+
    <!-- Content Row -->
    <div class="row mt-4">
       <div class="col">
@@ -122,10 +122,13 @@
                Hapus
             </a>
          <?php endif; ?>
-         <a href="#" class="btn btn-info float-right">
-            <i class="fas fa-fw fa-print"></i>
-            Print Musrenbang
-         </a>
+
+         <?php if ($pengesahan['keputusan'] != 'Diproses') : ?>
+            <a href="<?= base_url('kecamatan/printMusrenbang/' . $musrenbang['musrenbang_id']) ?>" class="btn btn-info float-right">
+               <i class="fas fa-fw fa-print"></i>
+               Print Musrenbang
+            </a>
+         <?php endif; ?>
       </div>
    </div>
 

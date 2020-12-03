@@ -9,9 +9,7 @@ class Instasi extends CI_Controller
     public function __construct()
     {
         parent::__construct();
-        if (!$this->session->userdata('user_name')) {
-            redirect('auth');
-        }
+        is_logged_in();
     }
 
     public function index()
@@ -83,5 +81,24 @@ class Instasi extends CI_Controller
             Musrenbang berhasil diubah
             </div>');
         redirect('instasi');
+    }
+
+    public function printMusrenbang($id)
+    {
+        $data['musrenbang'] = $this->db->select('musrenbang.*,user.kecamatan')
+            ->from('musrenbang')
+            ->join('user', 'user.user_id=musrenbang.user_id')
+            ->where('musrenbang_id', intval($id))
+            ->get()->row_array();
+        $this->db->select('instasi_id')->from('user')->where('user_id', $_SESSION['user_id']);
+        $data['instasi'] = $this->db->get()->row_array();
+        $this->db->select('status')->from('persetujuan')->where('musrenbang_id', $id)->where(' instasi_id', $data['instasi']['instasi_id']);
+        $data['status'] = $this->db->get()->row_array();
+
+        $this->load->library('pdf');
+
+        $this->pdf->setPaper('A4', 'potrait');
+        $this->pdf->filename = 'ID-' . $data['musrenbang']['kecamatan'] . '-' . $data['musrenbang']['musrenbang_id'] . '.pdf';
+        $this->pdf->load_view('instasi/printMusrenbangI', $data);
     }
 }

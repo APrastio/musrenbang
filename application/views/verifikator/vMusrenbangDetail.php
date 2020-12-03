@@ -5,7 +5,7 @@
    <div class="d-sm-flex align-items-center justify-content-between mb-4">
       <h1 class="h3 mb-0 text-gray-800">Detail Musrenbang</h1>
    </div>
-   <?php var_dump($musrenbang) ?>
+
    <!-- Content Row -->
    <div class="row mt-4">
       <div class="col">
@@ -77,16 +77,16 @@
    <div class="row mt-4 mb-5">
       <div class="col">
          <?php if ($cek > null) : ?>
-            <a href="<?= base_url('Verifikator/verifyMusrenbang/') . $musrenbang['musrenbang_id'] . '/' . $keputusan = 'Disetujui' . '/' . $musrenbang['pengesahan_id'] ?>" class="btn btn-success">
+            <a href="<?= base_url('verifikator/verifyMusrenbang/') . $musrenbang['musrenbang_id'] . '/' . $keputusan = 'Disetujui' . '/' . $musrenbang['pengesahan_id'] ?>" class="btn btn-success">
                <i class="fas fa-fw fa-check"></i>
                Disetujui
             </a>
-            <a href="<?= base_url('Verifikator/verifyMusrenbang/') . $musrenbang['musrenbang_id'] . '/' . $keputusan = 'Ditolak' . '/' . $musrenbang['pengesahan_id'] ?>" class="btn btn-danger">
+            <a href="<?= base_url('verifikator/verifyMusrenbang/') . $musrenbang['musrenbang_id'] . '/' . $keputusan = 'Ditolak' . '/' . $musrenbang['pengesahan_id'] ?>" class="btn btn-danger">
                <i class="fas fa-fw fa-times"></i>
                Tidak Disetujui
             </a>
          <?php endif; ?>
-         <a href="#" class="btn btn-info float-right">
+         <a href="<?= base_url('verifikator/printMusrenbang/' . $musrenbang['musrenbang_id']) ?>" class="btn btn-info float-right">
             <i class="fas fa-fw fa-print"></i>
             Print Musrenbang
          </a>

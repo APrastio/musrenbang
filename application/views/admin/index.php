@@ -15,7 +15,7 @@
                     <div class="row no-gutters align-items-center">
                         <div class="col mr-2">
                             <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">Total Kecamatan</div>
-                            <div class="h5 mb-0 font-weight-bold text-gray-800">8 </div>
+                            <div class="h5 mb-0 font-weight-bold text-gray-800"><?= sizeof($kecamatan) ?></div>
                         </div>
                         <div class="col-auto">
                             <i class="fas fa-home fa-2x text-gray-300"></i>
@@ -33,7 +33,7 @@
                         <div class="col mr-2">
                             <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">Total Musrenbang
                             </div>
-                            <div class="h5 mb-0 font-weight-bold text-gray-800">12</div>
+                            <div class="h5 mb-0 font-weight-bold text-gray-800"><?= sizeof($musren) ?></div>
                         </div>
                         <div class="col-auto">
                             <i class="fas fa-file-contract fa-2x text-gray-300"></i>
@@ -53,7 +53,7 @@
                                 Disetujui</div>
                             <div class="row no-gutters align-items-center">
                                 <div class="col-auto">
-                                    <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800">8</div>
+                                    <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800"><?= sizeof($setuju) ?></div>
                                 </div>
                             </div>
                         </div>
@@ -73,7 +73,7 @@
                         <div class="col mr-2">
                             <div class="text-xs font-weight-bold text-danger text-uppercase mb-1">Musrenbang Tidak
                                 Disetujui</div>
-                            <div class="h5 mb-0 font-weight-bold text-gray-800">4</div>
+                            <div class="h5 mb-0 font-weight-bold text-gray-800"><?= sizeof($tolak) ?></div>
                         </div>
                         <div class="col-auto">
                             <i class="fas fa-times-circle fa-2x text-gray-300"></i>

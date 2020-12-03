@@ -81,7 +81,7 @@
 
             <div class="row mt-4 mb-5">
                <div class="col">
-                  <a href="#" class="btn btn-info float-right">
+                  <a href="<?= base_url('verifikator/printDiterima/' . $musrenbang['musrenbang_id']) ?>" class="btn btn-info float-right">
                      <i class="fas fa-fw fa-print"></i>
                      Print Musrenbang
                   </a>

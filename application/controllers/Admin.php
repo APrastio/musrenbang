@@ -9,15 +9,34 @@ class Admin extends CI_Controller
         if (!$this->session->userdata('user_name')) {
             redirect('auth');
         }
+        is_logged_in();
     }
 
     public function index()
     {
+        if ($_SESSION['role_id'] == 1) {
+            $a = $_SESSION['user_id'];
+            $this->load->model('MusrenbangModel', 'musrenbang');
+            $data['musren'] = $this->musrenbang->getMusrenbang($a);
+            $this->db->select('pengesahan`.`keputusan')->from('musrenbang')->join('pengesahan', 'musrenbang.musrenbang_id = pengesahan.musrenbang_id')->join('user', 'user.user_id=musrenbang.`user_id')->where('pengesahan.keputusan', 'Ditolak')->where('user.user_id', $a);
+            $data['tolak'] = $this->db->get()->result_array();
+            $this->db->select('pengesahan`.`keputusan')->from('musrenbang')->join('pengesahan', 'musrenbang.musrenbang_id = pengesahan.musrenbang_id')->join('user', 'user.user_id=musrenbang.`user_id')->where('pengesahan.keputusan', 'Disetujui')->where('user.user_id', $a);
+            $data['setuju'] = $this->db->get()->result_array();
+            $this->db->select('kecamatan')->where('role_id', 1);
+            $data['kecamatan'] = $this->db->get('user')->result_array();
+        } else {
 
+            $this->load->model('MusrenbangModel', 'musrenbang');
+            $data['musren'] = $this->musrenbang->getMusrenbanga();
+            $data['tolak'] = $this->musrenbang->getMusrenbangDitolak();
+            $data['setuju'] = $this->musrenbang->getMusrenbangDiterima();
+            $this->db->select('kecamatan')->where('role_id', 1);
+            $data['kecamatan'] = $this->db->get('user')->result_array();
+        }
         $this->load->view('templates/header');
         $this->load->view('templates/sidebar');
         $this->load->view('templates/topbar');
-        $this->load->view('admin/index');
+        $this->load->view('admin/index', $data);
         $this->load->view('templates/footer');
     }
 

@@ -6,9 +6,7 @@ class Verifikator extends CI_Controller
     public function __construct()
     {
         parent::__construct();
-        if (!$this->session->userdata('user_name')) {
-            redirect('admin');
-        }
+        is_logged_in();
     }
 
 
@@ -101,5 +99,46 @@ class Verifikator extends CI_Controller
             Musrenbang berhasil ' . strtolower($keputusan) . '
             </div>');
         redirect('verifikator/musrenbang' . $keputusan);
+    }
+
+    public function printMusrenbang($id)
+    {
+        $this->load->model('MusrenbangModel', 'musrenbang');
+        $data['musrenbang'] = $this->musrenbang->getMusrenbangMenungguDetail($id);
+        $data['persetujuan'] = $this->musrenbang->getinstansi($id);
+
+
+        $this->load->library('pdf');
+
+        $this->pdf->setPaper('A4', 'potrait');
+        $this->pdf->filename = 'ID-' . $data['musrenbang']['kecamatan'] . '-' . $data['musrenbang']['musrenbang_id'] . '.pdf';
+        $this->pdf->load_view('verifikator/printMusrenbangV', $data);
+    }
+
+    public function printDiterima($id)
+    {
+        $this->load->model('MusrenbangModel', 'musrenbang');
+        $data['musrenbang'] = $this->musrenbang->getMusrenbangDiterimaDetail($id);
+        $data['persetujuan'] = $this->musrenbang->getinstansi($id);
+
+
+        $this->load->library('pdf');
+
+        $this->pdf->setPaper('A4', 'potrait');
+        $this->pdf->filename = 'ID-' . $data['musrenbang']['kecamatan'] . '-' . $data['musrenbang']['musrenbang_id'] . '.pdf';
+        $this->pdf->load_view('verifikator/printDiterima', $data);
+    }
+    public function printDitolak($id)
+    {
+        $this->load->model('MusrenbangModel', 'musrenbang');
+        $data['musrenbang'] = $this->musrenbang->getMusrenbangDitolakDetail($id);
+        $data['persetujuan'] = $this->musrenbang->getinstansi($id);
+
+
+        $this->load->library('pdf');
+
+        $this->pdf->setPaper('A4', 'potrait');
+        $this->pdf->filename = 'ID-' . $data['musrenbang']['kecamatan'] . '-' . $data['musrenbang']['musrenbang_id'] . '.pdf';
+        $this->pdf->load_view('verifikator/printDitolak', $data);
     }
 }

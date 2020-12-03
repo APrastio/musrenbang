@@ -1,9 +1,6 @@
  <!-- Begin Page Content -->
  <div class="container-fluid">
-    <?php var_dump($musrenbang) ?>
-    <?php var_dump($_SESSION) ?>
-    <?php var_dump($status) ?>
-    <?php var_dump($instasi) ?>
+
     <!-- Page Heading -->
     <div class="d-sm-flex align-items-center justify-content-between mb-4">
        <h1 class="h3 mb-0 text-gray-800">Detail Musrenbang</h1>
@@ -47,6 +44,23 @@
                    <th>Biaya</th>
                    <td colspan="2">Rp.<?= number_format($musrenbang['biaya'], 2, ",", "."); ?></td>
                 </tr>
+                <?php if ($status > 0) : ?>
+                   <tr>
+                      <?php if ($status['status'] == 'Tidak Terkait') : ?>
+                         <th colspan="3" class="text-center table-secondary">
+                            <h4 class="font-weight-bold"><?= $status['status'] ?></h4>
+                         </th>
+                      <?php elseif ($status['status'] == 'Disetujui') : ?>
+                         <th colspan="3" class="text-center table-success">
+                            <h4 class="font-weight-bold"><?= $status['status'] ?></h4>
+                         </th>
+                      <?php elseif ($status['status'] == 'Tidak Disetujui') : ?>
+                         <th colspan="3" class="text-center table-danger">
+                            <h4 class="font-weight-bold"><?= $status['status'] ?></h4>
+                         </th>
+                      <?php endif; ?>
+                   </tr>
+                <?php endif; ?>
              </table>
           </div>
        </div>
@@ -69,7 +83,7 @@
                 Usulan Tidak Terkait
              </a>
           <?php endif; ?>
-          <a href="#" class="btn btn-info float-right">
+          <a href="<?= base_url('instasi/printMusrenbang/' . $musrenbang['musrenbang_id']) ?>" class="btn btn-info float-right">
              <i class="fas fa-fw fa-print"></i>
              Print Musrenbang
           </a>

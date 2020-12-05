@@ -24,7 +24,7 @@
 
                              <div class="form-group">
                                  <label>Password</label>
-                                 <input type="text" class="form-control" name="password">
+                                 <input type="password" class="form-control" name="password">
                                  <?= form_error('name', ' <small class="text-danger pl-3">', '</small>') ?>
                              </div>
 
@@ -33,7 +33,9 @@
                                  <select class="form-control" name="role_id">
                                      <option value="3">Administrator</option>
                                      <option value="1">Kecamatan</option>
-                                     <option value="4">Instansi</option>
+                                     <?php if (sizeof($cek) <= 3) : ?>
+                                         <option value="4">Instansi</option>
+                                     <?php endif; ?>
                                  </select>
                              </div>
 

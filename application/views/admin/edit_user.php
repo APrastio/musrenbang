@@ -25,7 +25,7 @@
 
                 <div class=" form-group">
                     <label>Password</label>
-                    <input type="text" name="password" class="form-control" value="1234">
+                    <input type="password" name="password" class="form-control">
                     <?= form_error('password', ' <small class="text-danger pl-3">', '</small>') ?>
                 </div>
 

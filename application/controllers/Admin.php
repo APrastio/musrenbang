@@ -68,11 +68,17 @@ class Admin extends CI_Controller
 
     public function hapus_user()
     {
+
         $id = $this->input->get('id');
-        $this->db->where('user_id', $id);
-        $this->db->delete('user');
-        $this->session->set_flashdata('pesan', '<div class="alert alert-success" role="alert">Selamat data berhasil dihapus</div>');
-        $this->data_user();
+        $sql = "DELETE FROM `user` WHERE `user_id` = $id";
+        $this->db->query($sql);
+        if ($this->db->query($sql)) {
+            $this->session->set_flashdata('pesan', '<div class="alert alert-success" role="alert">Selamat data berhasil dihapus</div>');
+            $this->data_user();
+        } else {
+            $this->session->set_flashdata('pesan', '<div class="alert alert-danger" role="alert">User tidak bisa dihapus karna telah membuat musrenbang</div>');
+            $this->data_user();
+        }
     }
 
     public function edit_user()
@@ -92,7 +98,7 @@ class Admin extends CI_Controller
     {
         $this->form_validation->set_rules('name', 'Name', 'required|trim');
         $this->form_validation->set_rules('user_name', 'User name', 'required|trim');
-        $this->form_validation->set_rules('password', 'password', 'required|trim|min_length[3]', ['min_length' => 'password to sort']);
+        $this->form_validation->set_rules('password', 'password', 'trim|min_length[3]', ['min_length' => 'password to sort']);
         if ($this->form_validation->run() == false) {
             $id = $this->input->post('id');
             $this->db->where('user_id', $id);
@@ -105,14 +111,25 @@ class Admin extends CI_Controller
             $this->load->view('admin/edit_user', $data);
             $this->load->view('templates/footer');
         } else {
-            $data = [
-                'user_id' => htmlspecialchars($this->input->post('id', true)),
-                'name' => htmlspecialchars($this->input->post('name', true)),
-                'user_name' => htmlspecialchars($this->input->post('user_name', true)),
-                'password' => password_hash($this->input->post('password'), PASSWORD_DEFAULT),
-                'kecamatan' => htmlspecialchars($this->input->post('kecamatan')),
-                'role_id' => htmlspecialchars($this->input->post('role_id'))
-            ];
+            $a = $this->input->post('password');
+            if ($a == "") {
+                $data = [
+                    'user_id' => htmlspecialchars($this->input->post('id', true)),
+                    'name' => htmlspecialchars($this->input->post('name', true)),
+                    'user_name' => htmlspecialchars($this->input->post('user_name', true)),
+                    'kecamatan' => htmlspecialchars($this->input->post('kecamatan')),
+                    'role_id' => htmlspecialchars($this->input->post('role_id'))
+                ];
+            } else {
+                $data = [
+                    'user_id' => htmlspecialchars($this->input->post('id', true)),
+                    'name' => htmlspecialchars($this->input->post('name', true)),
+                    'user_name' => htmlspecialchars($this->input->post('user_name', true)),
+                    'password' => password_hash($this->input->post('password'), PASSWORD_DEFAULT),
+                    'kecamatan' => htmlspecialchars($this->input->post('kecamatan')),
+                    'role_id' => htmlspecialchars($this->input->post('role_id'))
+                ];
+            }
             $this->db->where('user_id', $data['user_id']);
             $this->db->update('user', $data);
 
